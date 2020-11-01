@@ -1,4 +1,3 @@
-`timescale 1ns/1ps
 module Root(
 	input clkI,
 	input [3:0] keyI,swI,
@@ -7,6 +6,13 @@ module Root(
 	output [1:0] segDig,
 	output [5:0] rgbO
 );
-	PwdBox(clkI,swI,keyI,segO1,segO2,segDig,ledO,rgbO);
+	//WEEK4 密码箱
+	// PwdBox(clkI,swI,keyI,segO1,segO2,segDig,ledO,rgbO);
+
+	//WEEK5 4位全加器
+	//Week5(clkI,keyI,swI,ledO,segO1,segO2,segDig,rgbO);
+
+	//Week7 两种译码器
+	Week7(clkI,keyI,swI,ledO,segO1,segO2,segDig,rgbO);
 endmodule
 
