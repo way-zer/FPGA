@@ -109,6 +109,42 @@ set_location_assignment PIN_H13 -to swI[3]
 set_location_assignment PIN_E2 -to segDig[0]
 set_location_assignment PIN_B1 -to segDig[1]
 set_location_assignment PIN_J5 -to clkI
+set_location_assignment PIN_M4 -to gpio[0]
+set_location_assignment PIN_P3 -to gpio[1]
+set_location_assignment PIN_M5 -to gpio[2]
+set_location_assignment PIN_R3 -to gpio[3]
+set_location_assignment PIN_L6 -to gpio[4]
+set_location_assignment PIN_P4 -to gpio[5]
+set_location_assignment PIN_L7 -to gpio[6]
+set_location_assignment PIN_R5 -to gpio[7]
+set_location_assignment PIN_P6 -to gpio[8]
+set_location_assignment PIN_R7 -to gpio[9]
+set_location_assignment PIN_P7 -to gpio[10]
+set_location_assignment PIN_P8 -to gpio[11]
+set_location_assignment PIN_P9 -to gpio[12]
+set_location_assignment PIN_R9 -to gpio[13]
+set_location_assignment PIN_R11 -to gpio[14]
+set_location_assignment PIN_P12 -to gpio[15]
+set_location_assignment PIN_R14 -to gpio[16]
+set_location_assignment PIN_P15 -to gpio[17]
+set_location_assignment PIN_B15 -to gpio[18]
+set_location_assignment PIN_B14 -to gpio[19]
+set_location_assignment PIN_B13 -to gpio[20]
+set_location_assignment PIN_A14 -to gpio[21]
+set_location_assignment PIN_B11 -to gpio[22]
+set_location_assignment PIN_A13 -to gpio[23]
+set_location_assignment PIN_A11 -to gpio[24]
+set_location_assignment PIN_A9 -to gpio[25]
+set_location_assignment PIN_D10 -to gpio[26]
+set_location_assignment PIN_B8 -to gpio[27]
+set_location_assignment PIN_C8 -to gpio[28]
+set_location_assignment PIN_B7 -to gpio[29]
+set_location_assignment PIN_D7 -to gpio[30]
+set_location_assignment PIN_E7 -to gpio[31]
+set_location_assignment PIN_B6 -to gpio[32]
+set_location_assignment PIN_A7 -to gpio[33]
+set_location_assignment PIN_A5 -to gpio[34]
+set_location_assignment PIN_B4 -to gpio[35]
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -118,6 +154,7 @@ set_global_assignment -name EDA_TEST_BENCH_NAME Test -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id Test
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME Test -section_id Test
 set_global_assignment -name EDA_TEST_BENCH_FILE source/root_tb.v -section_id Test
+set_global_assignment -name VERILOG_FILE source/module/ExtendBroad.v
 set_global_assignment -name VERILOG_FILE source/weeks/Week7.v
 set_global_assignment -name VERILOG_FILE source/weeks/Week5.v
 set_global_assignment -name VERILOG_FILE source/module/Adder.v
@@ -132,4 +169,6 @@ set_global_assignment -name VERILOG_FILE source/module/PwdBox.v
 set_global_assignment -name VERILOG_FILE source/module/NumCounter.v
 set_global_assignment -name VERILOG_FILE source/module/FlashLED.v
 set_global_assignment -name VERILOG_FILE source/module/BreathLED.v
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
