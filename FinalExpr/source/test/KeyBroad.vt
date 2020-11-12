@@ -1,0 +1,28 @@
+`timescale  1ps / 1ps
+module KeyBroad_T;
+        parameter PERIOD  = 10;
+
+
+        // KeyBroad Inputs
+        reg   clk                                  = 0 ;
+        reg   rst_n                                = 0 ;
+        reg   [3:0]  KB_Row                        = 0 ;
+
+        // KeyBroad Outputs
+        wire  [3:0]  KB_Col                        ;
+        wire  [15:0]  key                          ;
+
+        always #(PERIOD/2)  clk=~clk;
+        initial #(PERIOD*2) rst_n  =  1;
+        KeyBroad  u_KeyBroad (
+                .clk                     ( clk            ),
+                .rst_n                   ( rst_n          ),
+                .KB_Row                  ( KB_Row  [3:0]  ),
+
+                .KB_Col                  ( KB_Col  [3:0]  ),
+                .key                     ( key     [15:0] )
+        );
+        //直接将输出的扫描信号Col赋给Row,模拟斜对角线的按键状态
+        always@(*) KB_Row = KB_Col;
+        initial #1000 $finish;
+endmodule

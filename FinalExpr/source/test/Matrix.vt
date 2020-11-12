@@ -1,0 +1,30 @@
+`timescale  1ps / 1ps
+module Matrix_T;
+        // Matrix Parameters   
+        parameter PERIOD  = 10;
+
+
+        // Matrix Inputs
+        reg   clk                                  = 0 ;
+        reg   rst_n                                = 0 ;
+        reg   [127:0]  data                        = 0 ;
+
+        // Matrix Outputs
+        wire  [7:0]  rowO                          ;
+        wire  [7:0]  colR                          ;
+        wire  [7:0]  colG                          ;
+
+        always #(PERIOD/2)  clk=~clk;
+        initial #(PERIOD*2) rst_n  =  1;
+        Matrix  u_Matrix (
+                .clk                     ( clk            ),
+                .rst_n                   ( rst_n          ),
+                .data                    ( data   [127:0] ),
+
+                .rowO                    ( rowO   [7:0]   ),
+                .colR                    ( colR   [7:0]   ),
+                .colG                    ( colG   [7:0]   )
+        );
+
+        initial #1000 $finish;
+endmodule

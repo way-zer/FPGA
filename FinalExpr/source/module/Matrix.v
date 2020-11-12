@@ -1,13 +1,14 @@
 module Matrix (
-    input clk1K,//时钟
+    input clk,rst_n,//时钟,重置,建议1kHz
     input [127:0] data,//数据输入 8行 每行中8列 均按大端序排列 每格用2位表示R和G两种颜色 高电平有效
     output [7:0] rowO,colR,colG//输出接口
 );
     reg [2:0] row=0;//当前显示行
-    always @(posedge clk1K) begin//行计数器
-        row = row+1;
+    always @(posedge clk or negedge rst_n) begin//行计数器
+        if(!rst_n) row = 0;
+        else row = row+1;
     end
-    D3to8 d1(row,rowO);
+    D3to8 u_D3to8(row,rowO);
     generate
         genvar i;
         for(i=0;i<8;i=i+1) begin:col
