@@ -1,0 +1,96 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2020  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+# Date created = 10:33:31  November 12, 2020
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Root_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name DEVICE EPM1270T144C5
+set_global_assignment -name TOP_LEVEL_ENTITY Root
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:33:31  NOVEMBER 12, 2020"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "100 ns" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name VERILOG_FILE source/module/Matrix.v
+set_global_assignment -name VERILOG_FILE source/Root.v
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_location_assignment PIN_18 -to clkI
+set_location_assignment PIN_45 -to colG[0]
+set_location_assignment PIN_44 -to colG[1]
+set_location_assignment PIN_43 -to colG[2]
+set_location_assignment PIN_42 -to colG[3]
+set_location_assignment PIN_41 -to colG[4]
+set_location_assignment PIN_40 -to colG[5]
+set_location_assignment PIN_39 -to colG[6]
+set_location_assignment PIN_38 -to colG[7]
+set_location_assignment PIN_22 -to colR[0]
+set_location_assignment PIN_21 -to colR[1]
+set_location_assignment PIN_16 -to colR[2]
+set_location_assignment PIN_15 -to colR[3]
+set_location_assignment PIN_14 -to colR[4]
+set_location_assignment PIN_13 -to colR[5]
+set_location_assignment PIN_12 -to colR[6]
+set_location_assignment PIN_11 -to colR[7]
+set_location_assignment PIN_8 -to rowO[0]
+set_location_assignment PIN_7 -to rowO[1]
+set_location_assignment PIN_6 -to rowO[2]
+set_location_assignment PIN_5 -to rowO[3]
+set_location_assignment PIN_4 -to rowO[4]
+set_location_assignment PIN_3 -to rowO[5]
+set_location_assignment PIN_2 -to rowO[6]
+set_location_assignment PIN_1 -to rowO[7]
+set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS OFF
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name EDA_NETLIST_WRITER_OUTPUT_DIR source/simulation -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH Root -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME Root -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id Root
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME Root_T -section_id Root
+set_global_assignment -name EDA_TEST_BENCH_FILE source/simulation/Root.vt -section_id Root

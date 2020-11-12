@@ -1,0 +1,24 @@
+`timescale 1 ps / 1 ps
+module Root_T();
+	reg clkI;
+	// wires                                               
+	wire [7:0]  colG;
+	wire [7:0]  colR;
+	wire [7:0]  rowO;
+
+	// assign statements (if any)                          
+	Root i1 (
+	// port map - connection between master ports and signals/registers   
+		.clkI(clkI),
+		.colG(colG),
+		.colR(colR),
+		.rowO(rowO)
+	);
+	initial                                                
+	begin                                                  
+		clkI=0;                                            
+		// $display("Running testbench");                       
+	end        
+	always #10 clkI=~clkI;                                                  
+endmodule
+
