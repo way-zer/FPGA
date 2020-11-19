@@ -1,5 +1,5 @@
 module Root (
-    input clk,rst_n,
+    input clk,rst,
 
     input [3:0] KB_Row,//键盘行列
     output [3:0] KB_Col, 
@@ -7,7 +7,8 @@ module Root (
 
     output [7:0] rowO,colR,colG//点阵输出接口
 );
-    Matrix u_Matrix(clk,rst_n,{
+    wire rst_n = ~rst;
+    Matrix u_Matrix(clk,~rst_n,{
         2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b10,
         2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,
         2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,
@@ -18,5 +19,8 @@ module Root (
         2'b01,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00
     },rowO,colR,colG);
 
-    KeyBroad u_KeyBroad(clk,rst_n,KB_Row,KB_Col,ledO);
+    wire [15:0] key,keyD;
+    KeyBroad u_KeyBroad(clk,rst_n,KB_Row,KB_Col,key);
+    Debounce#(.Size(16)) u_Debounce (clk,key,keyD);
+    assign ledO=keyD;
 endmodule

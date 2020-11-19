@@ -57,10 +57,7 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
-set_global_assignment -name VERILOG_FILE source/module/Matrix.v
-set_global_assignment -name VERILOG_FILE source/Root.v
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
-set_location_assignment PIN_18 -to clkI
 set_location_assignment PIN_45 -to colG[0]
 set_location_assignment PIN_44 -to colG[1]
 set_location_assignment PIN_43 -to colG[2]
@@ -85,6 +82,33 @@ set_location_assignment PIN_4 -to rowO[4]
 set_location_assignment PIN_3 -to rowO[5]
 set_location_assignment PIN_2 -to rowO[6]
 set_location_assignment PIN_1 -to rowO[7]
+
+set_location_assignment PIN_80 -to ledO[0]
+set_location_assignment PIN_79 -to ledO[1]
+set_location_assignment PIN_78 -to ledO[2]
+set_location_assignment PIN_77 -to ledO[3]
+set_location_assignment PIN_76 -to ledO[4]
+set_location_assignment PIN_75 -to ledO[5]
+set_location_assignment PIN_74 -to ledO[6]
+set_location_assignment PIN_73 -to ledO[7]
+set_location_assignment PIN_144 -to ledO[8]
+set_location_assignment PIN_143 -to ledO[9]
+set_location_assignment PIN_142 -to ledO[10]
+set_location_assignment PIN_141 -to ledO[11]
+set_location_assignment PIN_140 -to ledO[12]
+set_location_assignment PIN_139 -to ledO[13]
+set_location_assignment PIN_138 -to ledO[14]
+set_location_assignment PIN_137 -to ledO[15]
+
+set_location_assignment PIN_117 -to KB_Col[0]
+set_location_assignment PIN_118 -to KB_Col[1]
+set_location_assignment PIN_119 -to KB_Col[2]
+set_location_assignment PIN_120 -to KB_Col[3]
+set_location_assignment PIN_111 -to KB_Row[0]
+set_location_assignment PIN_112 -to KB_Row[1]
+set_location_assignment PIN_113 -to KB_Row[2]
+set_location_assignment PIN_114 -to KB_Row[3]
+
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS OFF
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name EDA_NETLIST_WRITER_OUTPUT_DIR source/simulation -section_id eda_simulation
@@ -94,3 +118,10 @@ set_global_assignment -name EDA_TEST_BENCH_NAME Root -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id Root
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME Root_T -section_id Root
 set_global_assignment -name EDA_TEST_BENCH_FILE source/simulation/Root.vt -section_id Root
+set_location_assignment PIN_18 -to clk
+set_location_assignment PIN_61 -to rst
+set_global_assignment -name VERILOG_FILE source/module/DivideClk.v
+set_global_assignment -name VERILOG_FILE source/module/KeyBroad.v
+set_global_assignment -name VERILOG_FILE source/module/Debounce.v
+set_global_assignment -name VERILOG_FILE source/module/Matrix.v
+set_global_assignment -name VERILOG_FILE source/Root.v

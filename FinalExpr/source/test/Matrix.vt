@@ -1,4 +1,4 @@
-`timescale  1ps / 1ps
+`timescale  10ns / 10ns
 module Matrix_T;
         // Matrix Parameters   
         parameter PERIOD  = 10;
