@@ -1,5 +1,5 @@
 # By WayZer
-cd ../../simulate
+# cd ../../simulate
 vlib work
 proc external_editor {filename linenumber} { exec "C:\\Program Files\\Microsoft VS Code\\Code.exe" -g $filename:$linenumber}
 set PrefSource(altEditor) external_editor
