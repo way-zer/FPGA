@@ -7,8 +7,8 @@ module JK (
 );
     assign nq = ~q;
     always @(negedge clk or posedge async_s or posedge async_r) begin
-        if(async_s)q<=1;
-        else if(async_r)q<=0;
+        if(async_s)q<=1'b1;
+        else if(async_r)q<=1'b0;
         else q <= (j&~q) | (~k&q);
     end
 endmodule
