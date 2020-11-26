@@ -119,9 +119,67 @@ set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id Root
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME Root_T -section_id Root
 set_global_assignment -name EDA_TEST_BENCH_FILE source/simulation/Root.vt -section_id Root
 set_location_assignment PIN_18 -to clk
-set_location_assignment PIN_61 -to rst
+set_global_assignment -name VERILOG_FILE source/module/Num.v
+set_global_assignment -name VERILOG_FILE source/module/C_Main.v
+set_global_assignment -name VERILOG_FILE source/module/C_Exam.v
 set_global_assignment -name VERILOG_FILE source/module/DivideClk.v
 set_global_assignment -name VERILOG_FILE source/module/KeyBroad.v
 set_global_assignment -name VERILOG_FILE source/module/Debounce.v
 set_global_assignment -name VERILOG_FILE source/module/Matrix.v
 set_global_assignment -name VERILOG_FILE source/Root.v
+set_location_assignment PIN_124 -to btn[7]
+set_location_assignment PIN_123 -to btn[6]
+set_location_assignment PIN_122 -to btn[5]
+set_location_assignment PIN_121 -to btn[4]
+set_location_assignment PIN_91 -to btn[3]
+set_location_assignment PIN_89 -to btn[2]
+set_location_assignment PIN_20 -to btn[1]
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[0] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[7] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[6] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[5] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[4] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[3] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[2] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[1] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colG[0] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[7] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[6] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[5] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[4] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[3] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[2] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER colR[1] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[7] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[6] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[5] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[4] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[3] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[2] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[1] -section_id matrix
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER rowO[0] -section_id matrix
+set_location_assignment PIN_61 -to btn[0]
+set_location_assignment PIN_62 -to segO[7]
+set_location_assignment PIN_59 -to segO[6]
+set_location_assignment PIN_58 -to segO[5]
+set_location_assignment PIN_57 -to segO[4]
+set_location_assignment PIN_55 -to segO[3]
+set_location_assignment PIN_53 -to segO[2]
+set_location_assignment PIN_52 -to segO[1]
+set_location_assignment PIN_30 -to sig[6]
+set_location_assignment PIN_51 -to segO[0]
+set_location_assignment PIN_70 -to sig[5]
+set_location_assignment PIN_69 -to sig[4]
+set_location_assignment PIN_67 -to sig[2]
+set_location_assignment PIN_66 -to sig[1]
+set_location_assignment PIN_63 -to sig[0]
+set_location_assignment PIN_68 -to sig[3]
+set_location_assignment PIN_125 -to sw[7]
+set_location_assignment PIN_127 -to sw[6]
+set_location_assignment PIN_129 -to sw[5]
+set_location_assignment PIN_130 -to sw[4]
+set_location_assignment PIN_131 -to sw[3]
+set_location_assignment PIN_132 -to sw[2]
+set_location_assignment PIN_133 -to sw[1]
+set_location_assignment PIN_134 -to sw[0]
+set_location_assignment PIN_31 -to sig[7]

@@ -19,7 +19,7 @@ module Num(
 		// 4'hd: segO <= 8'b0111_1010;
 		// 4'he: segO <= 8'b1001_1110;
 		// 4'hf: segO <= 8'b1000_1110;
-		default: segO= 8'b0;
+		default: segO= 8'h00;
 	endcase
 endmodule
 
