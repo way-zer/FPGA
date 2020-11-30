@@ -3,11 +3,11 @@ module BreathLED(
 	input clkI,
 	output ledO
 );
-	parameter init=0;
-	reg [10:0] cnt1,cnt2=init;
+	parameter init=0;//0~2047范围,控制初始状态
+	reg [10:0] cnt1,cnt2= (init<1024?init:1024-init);
 	always @(posedge clkI) cnt1=cnt1+1;
 	
-	reg increase=1;
+	reg increase= (init>=1024);
 	wire clk2;
 	DivideClk #(.M(12_000_000/2048)) (clkI,1,clk2);
 	always @(posedge clk2) begin
