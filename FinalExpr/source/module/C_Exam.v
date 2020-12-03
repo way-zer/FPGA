@@ -26,7 +26,7 @@ module Exam (
             showNum=0;
         end
         else if(!finish) begin
-            t <= t+1;
+            t <= t+3'h1;
             case (t)
                 0:  color <= 2'b10;//红
                 1:  color <= 2'b01;//绿

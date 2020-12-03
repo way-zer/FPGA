@@ -17,14 +17,14 @@ module DivideClk(
 	
 	always @ (posedge clkI or negedge enable) begin
 		if(!enable) begin//未启用,全部置零
-			clkO <= 0;
-			r <= 1;
+			clkO <= 1'b0;
+			r <= 1'b1;
 		end else begin
 			clkO <= r>=N || r==M;
 			if(r==M)
-				r<=1;
+				r<=1'b1;
 			else 
-				r<=r+1;
+				r<=r+1'b1;
 		end
 	end
 endmodule
