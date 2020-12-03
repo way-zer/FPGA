@@ -25,7 +25,7 @@ module Main (
         else begin
             gameState <= gameState;
             case (gameState)
-                Perpare: if(btnMain)gameState<=Gaming;
+                Perpare: if(btnMain&&gameTime==8'd59)gameState<=Gaming;//增加时间判断,确保各项参数初始化完成,游戏状态稳定
                 Gaming: begin 
                     if(gameTime==0)
                         gameState<=EndTimeOut;

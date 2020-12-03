@@ -21,7 +21,7 @@ module GameMatrixDisplay (
     wire [1:0] row,col;
     assign row = pos[3:2];
     assign col = pos[1:0];
-    wire [6:0] base = row<<5+col<<2;
+    wire [6:0] base = {row,1'h0,col,2'h0};
     always @(*) begin
         matrixData = 128'h0;//清屏
         if(en) begin
