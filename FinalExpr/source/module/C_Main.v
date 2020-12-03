@@ -18,7 +18,7 @@ module Main (
 
     //游戏状态机时钟,分频降低速度,避免冒险
     wire clk1k;//分频时钟,1k Hz 50%
-    DivideClk#(.M(10_000),.N(5_000)) u2_DivideClk(clk,1'b1,clk1k);
+    DivideClk#(.M(1_000),.N(500)) u2_DivideClk(clk,1'b1,clk1k);
     //主游戏状态机
     always @(posedge clk1k) begin
         if(!rst_n)gameState<=Perpare;
@@ -66,7 +66,7 @@ module Main (
     wire finishBoom;
 
     wire timeout1s;//1s延时时钟
-    DivideClk#(.N(10_000_000)) u3_DivideClk(clk,(gameState==Gaming)&&(~waitBoom),timeout1s);//1s延时器
+    DivideClk#(.N(1_000_000)) u3_DivideClk(clk,(gameState==Gaming)&&(~waitBoom),timeout1s);//1s延时器
     GameMatrixDisplay u_GameMatrixDisplay(clk,gameState==Gaming,pos,color,waitBoom,finishBoom,matrixData);//游戏点阵控制器
 
     //获取下一个坐标点

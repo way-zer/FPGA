@@ -11,7 +11,7 @@ module GameMatrixDisplay (
     assign finishBoom = &boomState/**==3*/;
 
     wire clk2Hz;//分频时钟,2Hz脉冲,0.5s
-    DivideClk#(.M(5_000_000)) u_DivideClk(clk,showBoom,clk2Hz);//分频器
+    DivideClk#(.M(500_000)) u_DivideClk(clk,showBoom,clk2Hz);//分频器
 
     always @(negedge showBoom or posedge clk2Hz) begin
         if(!showBoom)boomState <=2'd0;

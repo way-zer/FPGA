@@ -9,8 +9,8 @@ module DivideClk(
 	output reg clkO
 );
 //	parameter WIDTH = 24;
-	parameter M = 10_000_000;
-	parameter N = 5_000_000;
+	parameter M = 1_000_000;
+	parameter N = 500_000;
 	localparam WIDTH = $clog2(M+1);
 	
 	reg [WIDTH-1:0] r=1;//在1->M中循环

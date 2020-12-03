@@ -1,7 +1,7 @@
 //消抖模块(20ms)
 module Debounce(clk,I,O);
 	parameter Size = 1;
-	parameter ClkSpeed = 10_000_000;//传入时钟速度
+	parameter ClkSpeed = 1_000_000;//传入时钟速度
 
 	input clk;
 	input [Size-1:0] I;

@@ -1,5 +1,5 @@
 module Root (//此处定义硬件相关引脚信息,不一定全部使用
-    input clk,//时钟取10Mhz
+    input clk,//时钟取1Mhz
     input [7:0] sw,//上为高电平
     
     input [7:0] btn,//按键,高电平有效
