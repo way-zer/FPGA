@@ -33,6 +33,6 @@ module Numbers (
 	D3to8 u_D3to8(i,sig);
 	Num u_Num({data[4*i+3],data[4*i+2],data[4*i+1],data[4*i]},segO);
 	always @(posedge clk ) begin
-		i <= i+1;
+		i <= i+3'd1;
 	end
 endmodule

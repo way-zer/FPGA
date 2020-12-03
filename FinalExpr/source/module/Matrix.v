@@ -6,7 +6,7 @@ module Matrix (
     reg [2:0] row=0;//当前显示行
     always @(posedge clk or negedge rst_n) begin//行计数器
         if(!rst_n) row = 0;
-        else row = row+1;
+        else row = row+3'd1;
     end
     D3to8 u_D3to8(row,rowO);
     generate
