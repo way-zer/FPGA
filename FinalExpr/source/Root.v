@@ -18,7 +18,7 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
 
     // 信号
     wire finishExam,enableMain;
-    assign enableMain = swMain&finishExam;
+    assign enableMain = sw[7]|(swMain&finishExam);
     wire [127:0] matrixData,matrixDataExam,matrixDataMain;
     assign matrixData = enableMain?matrixDataMain:matrixDataExam;
     wire [31:0] numbersData,numbersDataExam,numbersDataMain;
@@ -36,4 +36,6 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
     KeyBroad u_KeyBroad(clk,rst_n,KB_Row,KB_Col,key);
     assign ledO[0]=finishExam;
     assign ledO[1]=enableMain;
+    assign ledO[2]=btnMain;
+    assign ledO[3]=btnSwitch;
 endmodule
