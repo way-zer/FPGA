@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EPM1270T144) Path("C:/Users/q1048/workplace/FPGA/FinalExpr/output_files/") File("Root.pof") MfrSpec(OpMask(3) SEC_Device(EPM1270T144) Child_OpMask(2 3 3));
+		Device PartName(EPM1270T144) Path("./output_files/") File("Root.pof") MfrSpec(OpMask(3) SEC_Device(EPM1270T144) Child_OpMask(2 3 3));
 
 ChainEnd;
 
