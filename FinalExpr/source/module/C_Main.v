@@ -3,6 +3,7 @@ module Main (
     
     input btnMain,btnSwitch,
     input [15:0] key,//键盘按键
+    output beep,
     output [127:0] matrixData,
     output [31:0] numbersData
 );
@@ -11,6 +12,7 @@ module Main (
     localparam EndTimeOut = 2'h0;
     localparam EndWin = 2'h3;
     reg [1:0] gameState=Perpare;
+    reg [1:0] difficult=0;//难度，数字越大，反应时间越少
 
     reg [7:0] gameTime,score;
     wire clk1Hz;//分频时钟,1Hz 50%
@@ -42,7 +44,7 @@ module Main (
     D8421toBCD d1(gameTime,gameTimeBCD),d2(score,scoreBCD);
     wire [7:0] gameTimeShow = (gameState==EndTimeOut & clk1Hz)?8'hff:gameTimeBCD;
     wire [7:0] scoreShow = (gameState==EndWin & clk1Hz)?8'hff:scoreBCD;
-    assign numbersData = {gameTimeShow,16'hffff,scoreShow};
+    assign numbersData = {gameTimeShow,8'hff,2'h0,difficult,4'hf,scoreShow};
     //游戏时间计数器
     always @(negedge clk1Hz)begin
         case (gameState)
@@ -58,6 +60,11 @@ module Main (
         if(!rst_n)random=8'b1;
         else random = {random[6:0],random[7]^random[0]};
     end
+    //难度控制
+    always @(posedge btnSwitch) begin
+        if(gameState!=Gaming)//游戏中不能切换
+            difficult = difficult+1;
+    end
 
     //游戏主体逻辑处理
     reg [3:0] pos;
@@ -65,12 +72,14 @@ module Main (
     reg waitBoom;//中间间隔
     wire finishBoom;
 
-    wire timeout1s;//1s延时时钟
-    DivideClk#(.N(1_000_000)) u3_DivideClk(clk,(gameState==Gaming)&&(~waitBoom),timeout1s);//1s延时器
+    localparam [0:95] Ms = {24'd2000_000,24'd1000_000,24'd500_000,24'd200_000};
+    wire [23:0] M= Ms[difficult*24+:24];
+    wire timeout;//延时时钟
+    DivideClkMN#(24) u_DivideClkMN(clk,(gameState==Gaming)&&(~waitBoom),M,M,timeout);//延时器
     GameMatrixDisplay u_GameMatrixDisplay(clk,gameState==Gaming,pos,color,waitBoom,finishBoom,matrixData);//游戏点阵控制器
 
     //获取下一个坐标点
-    wire clockNext = timeout1s | finishBoom;//解决10237问题
+    wire clockNext = timeout | finishBoom;//解决10237问题
     always@(posedge clockNext)begin
         pos <= random[7:4];
         color[1] <= random[1];//取随机数
@@ -91,12 +100,26 @@ module Main (
             end
         end else waitBoom = 1'b0;
     end
+
+    //======声音控制======
+    reg [4:0] musicData;
+    wire finishMusic;
+    Music u_Music(clk,rst_n,musicData,128,finishMusic,beep);
+    always @(posedge finishMusic) begin
+        case(gameState)
+            Perpare: musicData <= random[2:0]+5'b1;
+            Gaming: musicData <= waitBoom?((color-1)*7+1+{random[5],random[2],random[0]}):5'b0;
+            EndWin: musicData <= {random[4],random[2],random[0]}+5'b1;
+            EndTimeOut: musicData <= {random[6],random[3],random[0]}+5'b1;
+            default: musicData <= 0;
+        endcase
+    end
 endmodule
 
 module D8421toBCD (
     input [7:0] I,
     output [7:0] O
 );
-    assign O[7:4] = I / 4'd10;
+    assign O[7:4] = (I*13'd103)>>10;
     assign O[3:0] = I % 4'd10;
 endmodule

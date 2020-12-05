@@ -12,8 +12,8 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
     output [7:0] rowO,colR,colG,//点阵输出接口
     output [7:0] segO,sig//数码管输出控制接口
 );
-    wire btnMain = btn[3];
-    wire btnSwitch = btn[0];
+    wire btnMain,btnSwitch;
+    Debounce#(2) u_Debounce(clk,{btn[3],btn[0]},{btnMain,btnSwitch});
     wire swMain = sw[3];
     wire rst_n = 1'b1;
 
@@ -32,7 +32,7 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
     
     //控制模块
     Exam u_Exam(clk,swMain,finishExam,beepExam,matrixDataExam,numbersDataExam);
-    Main u_Main(clk,enableMain,btnMain,btnSwitch,key,matrixDataMain,numbersDataMain);
+    Main u_Main(clk,enableMain,btnMain,btnSwitch,key,beepMain,matrixDataMain,numbersDataMain);
 
     //功能模块
     Matrix u_Matrix(clk,rst_n,matrixData,rowO,colR,colG);
