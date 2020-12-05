@@ -1,0 +1,77 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run Test Script",
+            "type": "shell",
+            "command": "vsim -do ${file}",
+            "options": {
+                "cwd": "./simulate"
+            },
+            "problemMatcher": [
+                "$eslint-compact"
+            ]
+        },
+        {
+            "label": "Analysis",
+            "type": "shell",
+            "command": "quartus_map --read_settings_files=on --write_settings_files=off FinalExpr -c Root",
+            "options": {
+                "env": {
+                    "path": "C:\\Quartus\\quartus\\bin64"
+                }
+            }
+        },
+        {
+            "label": "Fitter",
+            "type": "shell",
+            "command": "quartus_fit --read_settings_files=on --write_settings_files=off FinalExpr -c Root",
+            "options": {
+                "env": {
+                    "path": "C:\\Quartus\\quartus\\bin64"
+                }
+            },
+            "dependsOn": "Analysis"
+        },
+        {
+            "label": "Assembler",
+            "type": "shell",
+            "command": "quartus_asm --read_settings_files=on --write_settings_files=off FinalExpr -c Root",
+            "options": {
+                "env": {
+                    "path": "C:\\Quartus\\quartus\\bin64"
+                }
+            },
+            "dependsOn": "Fitter"
+        },
+        {
+            "label": "ProgramAll",
+            "type": "shell",
+            "command": "quartus_pgm -c USB-Blaster Root.cdf",
+            "options": {
+                "env": {
+                    "path": "C:\\Quartus\\quartus\\bin64"
+                }
+            },
+            "dependsOn": "Assembler",
+            "problemMatcher": [
+                "$eslint-compact"
+            ]
+        },
+        {
+            "label": "Only Program",
+            "type": "shell",
+            "command": "quartus_pgm -c USB-Blaster Root.cdf",
+            "options": {
+                "env": {
+                    "path": "C:\\Quartus\\quartus\\bin64"
+                }
+            },
+            "problemMatcher": [
+                "$eslint-compact"
+            ]
+        }
+    ]
+}
