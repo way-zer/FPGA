@@ -28,3 +28,26 @@ module DivideClk(
 		end
 	end
 endmodule
+
+//可变M，N的分时器
+module DivideClkMN#(parameter WIDTH = 24)(
+	input clkI,
+	input enable,//0时关闭计算器,且归零
+	input [WIDTH-1:0] M,N,
+	output reg clkO
+);
+	reg [WIDTH-1:0] r=1;//在1->M中循环
+	
+	always @ (posedge clkI or negedge enable) begin
+		if(!enable) begin//未启用,全部置零
+			clkO <= 1'b0;
+			r <= 1'b1;
+		end else begin
+			clkO <= r>=N || r==M;
+			if(r>=M)
+				r<=1'b1;
+			else 
+				r<=r+1'b1;
+		end
+	end
+endmodule
