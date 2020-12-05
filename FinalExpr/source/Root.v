@@ -4,6 +4,7 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
     
     input [7:0] btn,//按键,高电平有效
     output [15:0] ledO,//LED输出端口,高电平有效
+    output beep,//蜂鸣器输出
 
     input [3:0] KB_Row,//键盘行列,高电平有效
     output [3:0] KB_Col, //低电平有效
@@ -23,11 +24,14 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
     assign matrixData = enableMain?matrixDataMain:matrixDataExam;
     wire [31:0] numbersData,numbersDataExam,numbersDataMain;
     assign numbersData = enableMain?numbersDataMain:numbersDataExam;
+    wire beepExam,beepMain;
+    assign beep = enableMain?beepMain:beepExam;
+
 
     wire [15:0] key;
     
     //控制模块
-    Exam u_Exam(clk,swMain,finishExam,matrixDataExam,numbersDataExam);
+    Exam u_Exam(clk,swMain,finishExam,beepExam,matrixDataExam,numbersDataExam);
     Main u_Main(clk,enableMain,btnMain,btnSwitch,key,matrixDataMain,numbersDataMain);
 
     //功能模块

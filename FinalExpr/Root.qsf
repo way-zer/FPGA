@@ -175,6 +175,7 @@ set_location_assignment PIN_132 -to sw[2]
 set_location_assignment PIN_133 -to sw[1]
 set_location_assignment PIN_134 -to sw[0]
 set_location_assignment PIN_31 -to sig[7]
+set_location_assignment PIN_60 -to beep
 set_global_assignment -name VERILOG_FILE source/module/C_GameMatrix.v
 set_global_assignment -name VERILOG_FILE source/module/Num.v
 set_global_assignment -name VERILOG_FILE source/module/C_Main.v
@@ -183,4 +184,5 @@ set_global_assignment -name VERILOG_FILE source/module/DivideClk.v
 set_global_assignment -name VERILOG_FILE source/module/KeyBroad.v
 set_global_assignment -name VERILOG_FILE source/module/Debounce.v
 set_global_assignment -name VERILOG_FILE source/module/Matrix.v
+set_global_assignment -name VERILOG_FILE source/module/Music.v
 set_global_assignment -name VERILOG_FILE source/Root.v

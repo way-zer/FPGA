@@ -2,6 +2,7 @@ module Exam (
     input clk,sw,//sw为主开关状态
     output finish,//完成自检状态指示,高电平有效
 
+    output beep,//蜂鸣器输出
     output [127:0] matrixData,//点阵模块数据
     output [31:0] numbersData//数码管模块数据
 );
@@ -18,6 +19,9 @@ module Exam (
     wire [3:0] num = (showNum&clk1Hz)?4'h8:4'hf;//通过方波控制显示数字为8(全亮)或f(隐藏)
     assign numbersData[31:28] = {1'b0,t};
     assign numbersData[27:0] = {7{num}};
+
+    wire musicFinish;
+    Music u_Music(clk,sw&~finish,t,1000,musicFinish,beep);
 
     always @(posedge clk1Hz or negedge sw) begin
         if(!sw) begin 
