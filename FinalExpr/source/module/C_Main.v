@@ -106,7 +106,7 @@ module Main (
     wire finishMusic;
     Music u_Music(clk,rst_n,musicData,128,finishMusic,beep);
     always @(posedge finishMusic) begin
-        case(gameState)
+        case(gameState)//基于伪随机数产生简单音频
             Perpare: musicData <= random[2:0]+5'b1;
             Gaming: musicData <= waitBoom?((color-1)*7+1+{random[5],random[2],random[0]}):5'b0;
             EndWin: musicData <= {random[4],random[2],random[0]}+5'b1;
@@ -120,6 +120,7 @@ module D8421toBCD (
     input [7:0] I,
     output [7:0] O
 );
+    //使用乘法伪除法，降低资源消耗（确保60以下无误）
     assign O[7:4] = (I*13'd103)>>10;
     assign O[3:0] = I % 4'd10;
 endmodule
