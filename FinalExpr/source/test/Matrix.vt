@@ -6,7 +6,6 @@ module Matrix_T;
 
         // Matrix Inputs
         reg   clk                                  = 0 ;
-        reg   rst_n                                = 0 ;
         reg   [127:0]  data                        = 0 ;
 
         // Matrix Outputs
@@ -15,25 +14,23 @@ module Matrix_T;
         wire  [7:0]  colG                          ;
 
         always #(PERIOD/2)  clk=~clk;
-        initial #(PERIOD*2) rst_n  =  1;
         Matrix  u_Matrix (
                 .clk                     ( clk            ),
-                .rst_n                   ( rst_n          ),
                 .data                    ( data   [127:0] ),
 
                 .rowO                    ( rowO   [7:0]   ),
                 .colR                    ( colR   [7:0]   ),
                 .colG                    ( colG   [7:0]   )
         );
-        initial data = {
-                2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b10,
-                2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,
-                2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,
-                2'b00,2'b00,2'b00,2'b00,2'b11,2'b00,2'b00,2'b00,
-                2'b00,2'b00,2'b00,2'b11,2'b00,2'b00,2'b00,2'b00,
-                2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,
-                2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,
-                2'b01,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00,2'b00
-        };
+initial data = {
+        16'b0000000000000010,
+        16'b0000000000000000,
+        16'b0000000000000000,
+        16'b0000000011000000,
+        16'b0000001100000000,
+        16'b0000000000000000,
+        16'b0000000000000000,
+        16'b0100000000000000
+};
         initial #1000 $finish;
 endmodule

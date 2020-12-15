@@ -35,7 +35,7 @@ module Root (//此处定义硬件相关引脚信息,不一定全部使用
     Main u_Main(clk,enableMain,btnMain,btnSwitch,key,beepMain,matrixDataMain,numbersDataMain);
 
     //功能模块
-    Matrix u_Matrix(clk,rst_n,matrixData,rowO,colR,colG);
+    Matrix u_Matrix(clk,matrixData,rowO,colR,colG);
     Numbers u_Numbers(clk,numbersData,segO,sig);
     KeyBroad u_KeyBroad(clk,rst_n,KB_Row,KB_Col,key);
     assign ledO[0]=finishExam;
