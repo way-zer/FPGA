@@ -18,7 +18,7 @@ module Exam (
     reg showNum=0;//是否显示数码管
     wire [3:0] num = (showNum&clk1Hz)?4'h8:4'hf;//通过方波控制显示数字为8(全亮)或f(隐藏)
     // assign numbersData[31:28] = {1'b0,t};//显示自检状态
-    assign numbersData[31:0] = {7{num}};
+    assign numbersData[31:0] = {8{num}};
 
     wire musicFinish;
     Music u_Music(clk,sw&~finish,t,1000,musicFinish,beep);
