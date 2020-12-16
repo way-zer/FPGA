@@ -18,18 +18,22 @@ radix signal /$Module/score u
 radix signal /$Module/pos u
 
 #修改分频器时长,降低仿真时间
-change /$Module/u_DivideClk/M 32'd10 
-change /$Module/u_DivideClk/N 32'd5
-change /$Module/u2_DivideClk/M 32'd10
-change /$Module/u_GameMatrixDisplay/u_DivideClk/M 32'd5
+change /$Module/u_DivideClk/M 10#100
+change /$Module/u_DivideClk/N 10#50
+force /$Module/M 10#100
+change /$Module/u_GameMatrixDisplay/u_DivideClk/M 10#50
 
-force /$Module/clk 0 0,1 50ns -r 100ns
+force /$Module/clk 0 0,1 500ns -r 1us
+force /$Module/clk1k 0 0,1 500ns -r 1us
 force /$Module/rst_n 0 0,1 500ns
-force /$Module/btnMain 0 0,1 1000ns,0 3000ns
+force /$Module/btnMain 0 0,1 3us,0 10us
 #模拟一次正确点击
-force /$Module/key 0 0,16'h0020 2500ns,0 2700ns
+force /$Module/key 0 0
+when {gameTime == 10#57} {
+    force key [examine correctKey] 2us,0 20us
+}
 
-run 1ms
+run 0.6ms
 
 #调整初始显示范围
-wave zoomrange 0ns 5000ns
+wave zoomfull
