@@ -104,15 +104,22 @@ module Main (
     //======声音控制======
     reg [4:0] musicData;
     wire finishMusic;
-    Music u_Music(clk,rst_n,musicData,128,finishMusic,beep);
-    always @(posedge finishMusic) begin
-        case(gameState)//基于伪随机数产生简单音频
-            Perpare: musicData <= random[2:0]+5'b1;
-            Gaming: musicData <= waitBoom?((color-1)*7+1+{random[5],random[2],random[0]}):5'b0;
-            EndWin: musicData <= {random[4],random[2],random[0]}+5'b1;
-            EndTimeOut: musicData <= {random[6],random[3],random[0]}+5'b1;
-            default: musicData <= 0;
-        endcase
+    Music u_Music(clk,rst_n,timeout?(pos+1'b1):(musicData),180,finishMusic,beep);
+    always @(posedge clk) begin
+        if(clockNext)begin
+            musicData <= pos+1'b1;//插入一个音符的提示音
+        end else if (btnMain) begin
+            musicData <= 5'h6;//主按键提示音
+        end else if(finishMusic)begin
+            case(gameState)//基于伪随机数产生简单音频
+                Perpare: musicData <= {random[6]^random[3],random[3],random[0]|random[1],1'b1};
+                // Perpare: musicData <= random[2:0]+5'b1;
+                Gaming: musicData <= waitBoom?((color-1)*7+{random[2],random[0],1'b1}):5'b0;
+                EndWin: musicData <= {random[6],random[3],random[4],random[0]^random[4]};
+                EndTimeOut: musicData <= random[2:0]+random[5:3];
+                default: musicData <= 0;
+            endcase
+        end
     end
 endmodule
 

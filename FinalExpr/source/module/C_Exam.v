@@ -22,7 +22,7 @@ module Exam (
 
     reg [4:0] musicI=0;
     wire musicFinish;
-    Music u_Music(clk,sw&~finish,t,125,musicFinish,beep);
+    Music u_Music(clk,sw&~finish,musicI,125,musicFinish,beep);
     always @(posedge musicFinish or negedge sw) begin
         if(!sw) musicI <= 1'b0;
         else if (musicI == 5'd21)//播放完最后一个音符
