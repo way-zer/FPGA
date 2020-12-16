@@ -93,7 +93,7 @@ module Main (
         if(gameState==Gaming)begin
             if(finishBoom) waitBoom = 1'b0;
             else if(!waitBoom)begin
-                if((key&correctKey)&&~(key^correctKey))begin//当前仅按下正确的按键
+                if(key==correctKey)begin//当前仅按下正确的按键
                     waitBoom = 1'b1;
                     score <= score+color;
                 end

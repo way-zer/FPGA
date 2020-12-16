@@ -31,7 +31,7 @@ module Numbers (
 );
     reg [2:0] i = 0;
 	D3to8 u_D3to8(i,sig);
-	Num u_Num({data[4*i+3],data[4*i+2],data[4*i+1],data[4*i]},segO);
+	Num u_Num({data[4*i+3-:4]},segO);
 	always @(posedge clk ) begin
 		i <= i+3'd1;
 	end

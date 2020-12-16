@@ -4,18 +4,22 @@ module GameMatrixDisplay (
     input [3:0] pos,
     input [1:0] color,
     input showBoom,//显示爆炸动画
-    output finishBoom,//爆炸动画完成
+    output reg finishBoom,//爆炸动画完成
     output reg [127:0] matrixData
 );
-    reg [1:0] boomState;//0为准备态,1为第一动画,2为第二动画,3为动画完成态
-    assign finishBoom = &boomState/**==3*/;
+    reg boomState;//0为第一动画,1为第二动画
 
     wire clk2Hz;//分频时钟,2Hz脉冲,0.5s
     DivideClk#(.M(500_000)) u_DivideClk(clk,showBoom,clk2Hz);//分频器
 
     always @(negedge showBoom or posedge clk2Hz) begin
-        if(!showBoom)boomState <=2'd0;
-        else boomState <= boomState+2'd1;
+        if(!showBoom)begin
+            boomState <=1'd0;
+            finishBoom <= 1'b0;
+        end else begin 
+            if(boomState) finishBoom <= 1'b1;
+            else boomState <= 1'd1;
+        end
     end
 
     wire [1:0] row,col;
@@ -25,7 +29,7 @@ module GameMatrixDisplay (
     always @(*) begin
         matrixData = 128'h0;//清屏
         if(en) begin
-            if (~boomState[1]) begin// 0|1状态时,显示中间4点
+            if (~boomState) begin// 0状态时,显示中间4点 showBoom为任意值，无需判断
                 //         base 配上偏移值
                 matrixData[base+0]=color[1];
                 matrixData[base+1]=color[0];
@@ -36,7 +40,7 @@ module GameMatrixDisplay (
                 matrixData[base+16+2]=color[1];
                 matrixData[base+16+3]=color[0];
             end
-            if(^boomState)begin//  1|2 状态时,显示周围8点
+            if(showBoom)begin//  0|1均时,显示周围8点 boomState为任意值，无需判断
                 if(|row)begin//防止上溢出
                     matrixData[base-16+0]=color[1];
                     matrixData[base-16+1]=color[0];
